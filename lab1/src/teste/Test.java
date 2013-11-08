@@ -8,6 +8,7 @@ import org.junit.Before;
 
 
 public class Test {
+	//Teste da classe Transformador
 	
 	Transformador transformador;
 	@Before

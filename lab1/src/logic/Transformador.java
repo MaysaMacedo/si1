@@ -18,10 +18,10 @@ public class Transformador {
 	 * @return versão escrita
 	 */
 	public String getValue(int valor) {
-		// [0..99]
 		if (valor == bilhao) {
 			return "um bilhão";
 		}
+		// [0..99]
 		if (valor < 100) {
 			return getMenoresDe99(valor);
 		}

@@ -21,7 +21,6 @@ public class Sistema {
 			System.out.println(resposta);
 			System.out.println("Se desejar realizar outra consulta digite SIM, caso contrário NAO"); 
 			continuar = entrada.next().toUpperCase();
-			
 		}
 		
 	}
