@@ -20,11 +20,33 @@ public class Sistema {
 			String resposta = sistema.getValue(valor);
 			System.out.println(resposta);
 			System.out.println("Se desejar realizar outra consulta digite SIM, caso contrário NAO"); 
-			continuar = entrada.next().toUpperCase();
+			continuar = ehPalavraValida().toUpperCase();
 		}
 		
 	}
 
+	/**
+	 * Verifica a validade da entrada
+	 * @return palavra
+	 */
+	private static String ehPalavraValida() {
+       String n;
+		Scanner valor = new Scanner(System.in);
+        if (valor.hasNextInt()) { 
+           return message();
+        } 
+        n = valor.next();
+        return n;
+	}
+	
+	/**
+	 * Messagem de entrada inválida
+	 * @return messagem
+	 */
+	private static String message() {
+		System.out.print("Digite um valor válido! Tente novamente: "); 
+        return ehPalavraValida();
+	}
 	/**
 	 * Verifica se o número é valido 
 	 * @return o valor válido
