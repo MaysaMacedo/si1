@@ -114,6 +114,9 @@ public class Transformador {
 	 */
 	public String getMilhao(int i) {
 		int parteMilhao = i / milhao;
+		if(i == milhao) {
+			return "um milhão";
+		}
 		if (parteMilhao == 1) {
 			return getValue(parteMilhao) + " milhão " + getMilhar(i % milhao);
 		}
