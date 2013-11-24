@@ -9,19 +9,24 @@ import play.db.ebean.*;
 
 @Entity
 public class Task extends Model {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	public Long id;
+	private Long id;
 	
 	@Required
-	public String label;
+	private String taskName;
 	
 	@Required
-	public String description;
+	private String description;
 
 	@Required
-	public int priority;
+	private int priority;
 
-	public static Finder<Long, Task> find = new Finder(Long.class, Task.class);
+	private static Finder<Long, Task> find = new Finder(Long.class, Task.class);
 
 	public static List<Task> all() {
 		return find.all();
@@ -43,12 +48,12 @@ public class Task extends Model {
 		this.id = id;
 	}
 
-	public String getLabel() {
-		return label;
+	public String getName() {
+		return taskName;
 	}
 
-	public void setLabel(String label) {
-		this.label = label;
+	public void setName(String name) {
+		this.taskName = name;
 	}
 
 	public String getDescription() {
