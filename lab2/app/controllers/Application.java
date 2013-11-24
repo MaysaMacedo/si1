@@ -1,6 +1,6 @@
 package controllers;
 
-import models.Task;
+import modelos.Task;
 import play.data.Form;
 import play.mvc.*;
 
@@ -26,7 +26,7 @@ public class Application extends Controller {
 	}
 
 	public static Result deleteTask(Long id) {
-		return TODO;
+		find.ref(id).delete();
 	}
 
 }
