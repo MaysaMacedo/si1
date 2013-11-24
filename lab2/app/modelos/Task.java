@@ -11,9 +11,15 @@ import play.db.ebean.*;
 public class Task extends Model {
 	@Id
 	public Long id;
+	
 	@Required
 	public String label;
+	
+	@Required
+	public String description;
 
+	@Required
+	public int priority;
 
 	public static Finder<Long, Task> find = new Finder(Long.class, Task.class);
 
@@ -28,7 +34,7 @@ public class Task extends Model {
 	public static void delete(Long id) {
 		find.ref(id).delete();
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -45,12 +51,22 @@ public class Task extends Model {
 		this.label = label;
 	}
 
-	public static Finder<Long, Task> getFind() {
-		return find;
+	public String getDescription() {
+		return description;
 	}
 
-	public static void setFind(Finder<Long, Task> find) {
-		Task.find = find;
+	public void setDescription(String description) {
+		this.description = description;
 	}
+
+	public int getPriority() {
+		return priority;
+	}
+
+	public void setPriority(int priority) {
+		this.priority = priority;
+	}
+
+
 
 }

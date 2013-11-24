@@ -26,7 +26,8 @@ public class Application extends Controller {
 	}
 
 	public static Result deleteTask(Long id) {
-		find.ref(id).delete();
-	}
+		  Task.delete(id);
+		  return redirect(routes.Application.tasks());
+		}
 
 }
