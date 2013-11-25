@@ -18,7 +18,7 @@ public class Task extends Model {
 	private Long id;
 	
 	@Required
-	private String taskName;
+	private String name;
 	
 	@Required
 	private String description;
@@ -49,11 +49,11 @@ public class Task extends Model {
 	}
 
 	public String getName() {
-		return taskName;
+		return name;
 	}
 
 	public void setName(String name) {
-		this.taskName = name;
+		this.name = name;
 	}
 
 	public String getDescription() {
