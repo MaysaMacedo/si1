@@ -1,8 +1,11 @@
 package controllers;
 
+import java.util.List;
+
 import modelos.Task;
 import play.data.Form;
-import play.mvc.*;
+import play.mvc.Controller;
+import play.mvc.Result;
 
 public class Application extends Controller {
 	static Form<Task> taskForm = Form.form(Task.class);
@@ -29,5 +32,11 @@ public class Application extends Controller {
 		  Task.delete(id);
 		  return redirect(routes.Application.tasks());
 		}
+	
+	
+	public static Result updateTask(Long id) {
+		Task.updateStatus(id);
+		return redirect(routes.Application.tasks());
+	}
 
 }

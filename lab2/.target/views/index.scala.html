@@ -2,29 +2,82 @@
 
 @import helper._
 
-@main("Todo list") {
-    
-    <h1>@tasks.size() task(s)</h1>
-    
+@main("Lista de atividades") {
+     <h1>@tasks.size() atividade(s)</h1>
+    <h1>Atividade(s) não realizada(s)</h1>
     <ul>
-        @for(task <- tasks) {
-            <li>
-                @task.getLabel()
-                
-                @form(routes.Application.deleteTask(task.id)) {
-                    <input type="submit" value="Delete">
+            <table border="1" width="40%">
+                    <tr>
+                            <td><h3><b>Tarefa</b></h3></td> 
+                            <td><h3><b>Descrição</b></h3></td> 
+                            <td><h3><b>Prioridade</b></h3></td>
+                            <td><h3><b>Ações</b></h3></td>
+                    </tr>
+                @for(task <- tasks) {
+                   @if(!task.isStatus()){
+                   <tr>
+                      
+                      
+
+               <td><h3>@task.getName()</h3></td>
+               <td><h4>@task.getDescription()</h4></td>
+               
+               <td><h4>@task.getPriority()</h4></td>
+                              <td>
+				   @form(routes.Application.updateTask(task.getId())) {
+					<input type="submit" value="Realizar"> 
+					}
+               @form(routes.Application.deleteTask(task.getId())) {
+                    <input type="submit" value="Excluir">
                 }
-            </li>
+               </td>
+            </tr>   
+		}         
         }
+        </table>
     </ul>
+
+    <h1>Atividades(s) realizadas(s)</h1>
+    <ul>
+            <table border="1" width="40%">
+                    <tr>
+                            <td><h3><b>Tarefa</b></h3></td> 
+                            <td><h3><b>Descrição</b></h3></td> 
+                            <td><h3><b>Prioridade</b></h3></td>
+                            <td><h3><b>Ações</b></h3></td>
+                    </tr>
+                @for(task <- tasks) {
+                   @if(task.isStatus()) {
+                   <tr>
+                     
+               <td><h3>@task.getName()</h3></td>
+               <td><h4>@task.getDescription()</h4></td>
+               
+               <td><h4>@task.getPriority()</h4></td>
+               <td>
+               @form(routes.Application.deleteTask(task.getId())) {
+                    <input type="submit" value="Excluir">
+                }
+               </td>
+            </tr>
+		}            
+        }
+        </table>
+    </ul>
+
     
-    <h2>Add a new task</h2>
+    
+    
+    
+    
+    <h2>Adicione uma nova atividade</h2>
     
     @form(routes.Application.newTask()) {
         
-        @inputText(taskForm("label")) 
-        
-        <input type="submit" value="Create">
+        @inputText(taskForm("name"),'_label-> "Nome da atividade:") 
+        @inputText(taskForm("description"),'_label-> "Descrição:")
+        @inputText(taskForm("priority"),'_label-> "Prioridade da atividade:")
+        <input type="submit" value="Criar">
         
     }
     

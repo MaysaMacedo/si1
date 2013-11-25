@@ -1,6 +1,7 @@
 package modelos;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import play.data.validation.Constraints.*;
@@ -8,7 +9,7 @@ import javax.persistence.*;
 import play.db.ebean.*;
 
 @Entity
-public class Task extends Model {
+public class Task extends Model implements Comparable {
 	/**
 	 * 
 	 */
@@ -25,11 +26,16 @@ public class Task extends Model {
 
 	@Required
 	private int priority;
+	
+	@Required
+	private boolean status;
 
 	private static Finder<Long, Task> find = new Finder(Long.class, Task.class);
 
 	public static List<Task> all() {
-		return find.all();
+		List<Task> tasks = find.all();
+		Collections.sort(tasks);
+		return tasks;
 	}
 
 	public static void create(Task task) {
@@ -38,6 +44,13 @@ public class Task extends Model {
 
 	public static void delete(Long id) {
 		find.ref(id).delete();
+	}
+	
+	public static void updateStatus(Long id) {
+		Task task = find.ref(id);
+		task.setStatus(true);
+		task.update();
+		
 	}
 
 	public Long getId() {
@@ -71,7 +84,18 @@ public class Task extends Model {
 	public void setPriority(int priority) {
 		this.priority = priority;
 	}
+	public boolean isStatus() {
+		return status;
+	}
 
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		return this.priority - (((Task)o).priority);
+	}
 
 
 }
