@@ -5,9 +5,25 @@
 @main("Lista de atividades") {
      <h1>@tasks.size() atividade(s)</h1>
     <h1>Atividade(s) não realizada(s)</h1>
+      <style type="text/css">
+	body {
+		text-align: center;
+		color: #660000;
+	}
+	td {
+	color: #333399;
+	}
+	
+	tr{
+	color: blue;
+	}
+
+  
+  </style>
     <ul>
-            <table border="1" width="40%">
+            <table class="table table-hover">
                     <tr>
+                    
                             <td><h3><b>Tarefa</b></h3></td> 
                             <td><h3><b>Descrição</b></h3></td> 
                             <td><h3><b>Prioridade</b></h3></td>
@@ -16,13 +32,9 @@
                 @for(task <- tasks) {
                    @if(!task.isStatus()){
                    <tr>
-                      
-                      
-
-               <td><h3>@task.getName()</h3></td>
-               <td><h4>@task.getDescription()</h4></td>
-               
-               <td><h4>@task.getPriority()</h4></td>
+						<td><h3>@task.getName()</h3></td>
+						<td><h4>@task.getDescription()</h4></td>               
+						<td><h4>@task.getPriority()</h4></td>
                               <td>
 				   @form(routes.Application.updateTask(task.getId())) {
 					<input type="submit" value="Realizar"> 
@@ -39,7 +51,7 @@
 
     <h1>Atividades(s) realizadas(s)</h1>
     <ul>
-            <table border="1" width="40%">
+            <table class="table table-hover">
                     <tr>
                             <td><h3><b>Tarefa</b></h3></td> 
                             <td><h3><b>Descrição</b></h3></td> 
@@ -65,11 +77,6 @@
         </table>
     </ul>
 
-    
-    
-    
-    
-    
     <h2>Adicione uma nova atividade</h2>
     
     @form(routes.Application.newTask()) {
@@ -79,6 +86,5 @@
         @inputText(taskForm("priority"),'_label-> "Prioridade da atividade:")
         <input type="submit" value="Criar">
         
-    }
-    
+    }   
 }
